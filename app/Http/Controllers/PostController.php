@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Posts;
 class PostController extends Controller
 {
     public function index(){
         return view('posts', [
             "title" => "Blog",
-            "posts" => Post::all()
+            "posts" => Posts::all()
         ]);
     }
 
-    public function show($slug){
+    public function show(Posts $post){
         return view('post', [
             "title" => "Single Post",
-            "post" => Post::find($slug)
+            "post" => $post
         ]);
     }
 }
