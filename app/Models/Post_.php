@@ -28,4 +28,5 @@ class Post
         $posts = self::all();
         return $posts->firstWhere('slug', $slug);
     }
+    
 }
