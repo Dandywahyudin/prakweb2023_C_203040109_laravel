@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Machine Learning',
             'slug' => 'machine-learning'
         ]);
+        Category::create([
+            'name' => 'Data Science',
+            'slug' => 'Data Science'
+        ]);
         Posts::factory(20)->create();
         // Posts::create([
         //     'title' => 'Judul Pertama',
