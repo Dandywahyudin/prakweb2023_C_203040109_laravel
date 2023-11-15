@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
     return view('home', [
         "title" => "Home",
@@ -26,11 +25,11 @@ Route::get('/', function () {
 
 Route::get('/about', function () {
     return view('about', [
-        'title' => 'About',
-        'active' => 'about',
-        'name' => 'Sandhika Galih',
-        'email' => 'sandhikagalih@gmail.com',
-        'image' => 'sandhika.jpg'
+        "title" => "About",
+        "name" => "Dandy Wahyudin",
+        "email" => "Dandywahyudin19@gmail.com",
+        "image" => "gambar.png",
+        "active" => 'about'
     ]);
 });
 
@@ -45,12 +44,4 @@ Route::get('/categories', function() {
     ]);
 });
 
-
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+?>
