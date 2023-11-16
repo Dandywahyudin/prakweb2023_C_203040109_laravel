@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
+use Clockwork\Storage\Search;
+
 class PostController extends Controller
 {
     public function index()
     {  
+        // dd(request('search'));
+
         $title = '';
         if(request('category')) {
             $category = Category::firstWhere('slug', request('category'));
@@ -21,10 +26,13 @@ class PostController extends Controller
             $title = ' by ' . $author->name;
         }
 
+       
+        
+
         return view('posts', [
             "title" => "All Posts" . $title,
             "active" => 'posts',
-            "posts" => Posts::latest()->get()
+            "posts" => Posts::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }
 
