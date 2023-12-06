@@ -43,6 +43,7 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
+                <img src="" alt="" class="img-preview img fluid mb-3 col-sm-5">
                 <img class="img-preview img-fluid mb-3 col-sm-5">
                 <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
                     name="image" onchange="previewImage()">
@@ -62,9 +63,6 @@
                 <trix-editor input="body"></trix-editor>
 
             </div>
-
-
-
             <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
     </div>
@@ -91,9 +89,9 @@
             const oFReader = new FileReader();
             oFReader.readAsDataURL(image.files[0]);
 
-            oFReader.onload = function(oFReader) 
-            imgPreview.src = oFREvent.target.result;
-            
+            oFReader.onload = function(oFREVent) {
+            imgPreview.src = oFREVent.target.result;
+            }
         }
     </script>
 @endsection

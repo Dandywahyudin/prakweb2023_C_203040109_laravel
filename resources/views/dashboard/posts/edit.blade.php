@@ -42,7 +42,6 @@
                 </select>
             </div>
 
-
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
                 <input type="hidden" name="oldimage" value="{{$post->image}}">

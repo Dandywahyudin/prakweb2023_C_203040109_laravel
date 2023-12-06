@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
+
 class DashboardPostController extends Controller
 {
     public function index()
@@ -26,17 +27,18 @@ class DashboardPostController extends Controller
 
     public function store(Request $request)
     {
+        
 
         $validatedData = $request->validate([
             'title' => 'required|max:255|min:3',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
-            'image' => 'image|file|max:10024',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('posts-images');
+            $validatedData['image'] = $request->file('image')->store('post-images');
         }
 
         $validatedData['user_id'] = auth()->user()->id;
@@ -44,7 +46,7 @@ class DashboardPostController extends Controller
 
         Posts::create($validatedData);
 
-        return redirect('/dashboard/post')->with('success', 'New Posts has been added!');
+        return redirect('/dashboard/posts')->with('success', 'New Posts has been added!');
     }
 
     public function show(Posts $post)
@@ -96,8 +98,8 @@ class DashboardPostController extends Controller
 
     public function destroy(Posts $post)
     {
-        if($post->Image) {
-            Storage::delete($post->Image);
+        if($post->image) {
+            Storage::delete($post->image);
         }
         Posts::destroy($post->id);
 
