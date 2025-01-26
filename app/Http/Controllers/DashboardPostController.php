@@ -17,6 +17,7 @@ class DashboardPostController extends Controller
         return view('dashboard.posts.index', [
             'posts' => Posts::where('user_id', auth()->user()->id)->get()
         ]);
+        dd("hasil:", $posts);
     }
     public function create()
     {
@@ -54,6 +55,7 @@ class DashboardPostController extends Controller
         return view('dashboard.posts.show', [
             'post' => $post
         ]);
+        dd("hasil:", $post);
     }
 
     public function edit(Posts $post)

@@ -11,9 +11,9 @@ class Posts extends Model
     use HasFactory, Sluggable;
     //protected $fillable = ['title','excerpt','body'];
     protected $fillable = [
-        'title', // Judul
-        'category_id', // Kategori
-        'user_id', // Penulis
+        'title',
+        'category_id',
+        'user_id',
         'slug',
         'excerpt',
         'body',
